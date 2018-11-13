@@ -1,0 +1,15 @@
+- name: Ensure ClamAV is installed
+  pacman:
+    name: "clamav"
+
+- name: Remove 'Example' line from ClamAV configuration files
+  lineinfile:
+    dest: "{{ item }}"
+    regexp: "^Example"
+    state: absent
+  with_items:
+    - /etc/clamav/freshclam.conf
+    - /etc/clamav/clamdd.conf
+  notify:
+    - restart clamav
+    - restart freshclam

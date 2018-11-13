@@ -1,0 +1,7 @@
+---
+- name: The x86 Ctrl-Alt-Delete key sequence must be disabled
+  systemd:
+    name: ctrl-alt-del.target
+    enabled: no
+    masked: yes
+    daemon_reload: yes

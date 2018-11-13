@@ -1,0 +1,7 @@
+---
+- name: Install ntp
+  pacman:
+    name: ntp
+    state: present
+  notify:
+    - restart ntp

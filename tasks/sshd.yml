@@ -1,0 +1,30 @@
+---
+- name: Set Permissions on /etc/ssh/sshd_config
+  file:
+    path: /etc/ssh/sshd_config
+    state: file
+    mode: 0600
+    owner: root
+    group: root
+
+- name: Manage sshd settings
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: "{{ item.state }}"
+    regexp: "{{ item.regex }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { name: "Disable X11 Forwarding", regex: "^X11Forwarding", line: "X11Forwarding no", state: "present"}
+    - { name: "Set SSH MaxAuthTries to 4 or less", regex: "^MaxAuthTries", line: "MaxAuthTries 6", state: "present"}
+    - { name: "Disable SSH Root Login", regex: "^PermitRootLogin", line: "PermitRootLogin no", state: "present"}
+    - { name: "Disable SSH Root Login", regex: "^PermitUserEnvironment", line: "PermitUserEnvironment no", state: "present"}
+    - { name: "Use Only Approved Cipher in Counter Mode", regex: "^Ciphers", line: "Ciphers aes128-ctr,aes192-ctr,aes256-ctr", state: "present"}
+    - { name: "Set Idle Timeout Interval for User Login", regex: "^ClientAliveInterval", line: "ClientAliveInterval 300", state: "present"}
+    - { name: "Set Idle Timeout Interval for User Login", regex: "^ClientAliveCountMax", line: "ClientAliveCountMax 0", state: "present"}
+    - { name: "Set SSH Banner", regex: "^#Banner", line: "Banner /etc/issue.net", state: "present"}
+
+- name: Ensure sshd is enabled at boot time
+  service:
+    name: "sshd"
+    enabled: yes
+    state: restarted

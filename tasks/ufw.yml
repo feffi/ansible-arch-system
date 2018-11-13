@@ -1,0 +1,12 @@
+---
+- name: install pacman packages
+  pacman:
+    name: "ufw"
+    state: present
+
+- name: Apply ufw firewall defaults
+  template:
+    src: 'etc/default/ufw.j2'
+    dest: '/etc/default/ufw'
+  tags:
+    - ufw
