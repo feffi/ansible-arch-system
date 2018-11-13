@@ -2,4 +2,4 @@
 
 # A list of TTYs, from which root can log in
 # see `man securetty` for reference
-{{ "\n".join(ansible_system.os.auth.root_ttys) }}
+{{ "\n".join(ansible_arch_system.os.auth.root_ttys) }}

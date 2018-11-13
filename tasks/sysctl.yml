@@ -9,7 +9,7 @@
     reload: yes
     ignoreerrors: yes
   with_dict:
-    - "{{ ansible_system.sysctl }}"
+    - "{{ ansible_arch_system.sysctl }}"
   notify:
     - "reload sysctl.conf"
 

@@ -1,6 +1,6 @@
 ---
 - name: Create user group
   hostname:
-      name: "{{ ansible_system.hostname }}"
+      name: "{{ ansible_arch_system.hostname }}"
   tags:
     - system

@@ -1,5 +1,5 @@
 ---
-ansible_system: {
+ansible_arch_system: {
   # The hostname to set
   hostname: "tardis",
 

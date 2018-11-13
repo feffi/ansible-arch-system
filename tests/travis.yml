@@ -2,7 +2,7 @@
 - hosts: 127.0.0.1
   connection: local
   vars:
-    ansible_system:
+    ansible_arch_system:
       hostname: "tardis"
   roles:
-    - { role: ansible-system }
+    - { role: ansible-arch-system }

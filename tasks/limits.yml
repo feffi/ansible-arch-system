@@ -24,10 +24,10 @@
       group: 'root'
       mode: '0440'
 
-  when: not ansible_system.kernel.enable_core_dump
+  when: not ansible_arch_system.kernel.enable_core_dump
 
 - name: remove 10.hardcore.conf config file
   file:
     path: /etc/security/limits.d/10.hardcore.conf
     state: absent
-  when: ansible_system.kernel.enable_core_dump
+  when: ansible_arch_system.kernel.enable_core_dump
